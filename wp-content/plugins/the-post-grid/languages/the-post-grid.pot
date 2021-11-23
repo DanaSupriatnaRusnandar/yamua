@@ -1,0 +1,534 @@
+# Copyright (C) 2021 The Post Grid
+# This file is distributed under the same license as the The Post Grid package.
+msgid ""
+msgstr ""
+"Project-Id-Version: The Post Grid\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Poedit-Basepath: ..\n"
+"X-Poedit-KeywordsList: __;_e;_ex:1,2c;_n:1,2;_n_noop:1,2;_nx:1,2,4c;_nx_noop:1,2,3c;_x:1,2c;esc_attr__;esc_attr_e;esc_attr_x:1,2c;esc_html__;esc_html_e;esc_html_x:1,2c\n"
+"X-Poedit-SearchPath-0: .\n"
+"X-Poedit-SearchPathExcluded-0: *.js\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: ../lib/init.php:238
+msgid "Pro field alert!"
+msgstr ""
+
+#: ../lib/init.php:239
+msgid "Sorry! this is a pro field. To use this field, you need to use pro plugin."
+msgstr ""
+
+#: ../lib/init.php:240
+msgid "Upgrade to pro"
+msgstr ""
+
+#: ../lib/classes/rtTPGAjaxResponse.php:38
+msgid "Server Error !!"
+msgstr ""
+
+#: ../lib/classes/rtTPGAjaxResponse.php:71, ../lib/classes/rtTPGAjaxResponse.php:98, ../lib/classes/rtTPGPreview.php:939
+msgid "Session Error !!"
+msgstr ""
+
+#: ../lib/classes/rtTPGAjaxResponse.php:61
+msgid "Success"
+msgstr ""
+
+#: ../lib/classes/rtTPGAjaxResponse.php:62, ../lib/classes/rtTPGOptions.php:373
+msgid "Show All"
+msgstr ""
+
+#: ../lib/classes/rtTPGAjaxResponse.php:93
+msgid "Settings successfully updated"
+msgstr ""
+
+#: ../lib/classes/rtTPGAjaxResponse.php:129, ../lib/classes/rtTPGAjaxResponse.php:148, ../lib/classes/rtTPGAjaxResponse.php:189
+msgid "Security error"
+msgstr ""
+
+#: ../lib/classes/rtTPGAjaxResponse.php:125
+msgid "<div class=\"field-holder\">No Taxonomy found</div>"
+msgstr ""
+
+#: ../lib/classes/rtTPGAjaxResponse.php:215
+msgid "No shortCode found."
+msgstr ""
+
+#: ../lib/classes/rtTPGAjaxResponse.php:204
+msgid "Select Short code"
+msgstr ""
+
+#: ../lib/classes/rtTPGAjaxResponse.php:206, ../lib/classes/rtTPGOptions.php:814, ../lib/classes/rtTPGOptions.php:826
+msgid "Default"
+msgstr ""
+
+#: ../lib/classes/rtTPGHook.php:35
+msgid "Facing issue?"
+msgstr ""
+
+#: ../lib/classes/rtTPGHook.php:35
+msgid "Please open a support ticket."
+msgstr ""
+
+#: ../lib/classes/rtTPGInit.php:69, ../lib/classes/rtTPGInit.php:70, ../lib/vendor/RtElementorWidget.php:10, ../lib/vendor/RtElementorWidget.php:25, ../lib/widgets/RT_TPGWidget.php:14
+msgid "The Post Grid"
+msgstr ""
+
+#: ../lib/classes/rtTPGInit.php:71
+msgid "Add New Grid"
+msgstr ""
+
+#: ../lib/classes/rtTPGInit.php:72
+msgid "All Grids"
+msgstr ""
+
+#: ../lib/classes/rtTPGInit.php:73
+msgid "Add New Post Grid"
+msgstr ""
+
+#: ../lib/classes/rtTPGInit.php:74
+msgid "Edit Post Grid"
+msgstr ""
+
+#: ../lib/classes/rtTPGInit.php:75
+msgid "New Post Grid"
+msgstr ""
+
+#: ../lib/classes/rtTPGInit.php:76
+msgid "View Post Grid"
+msgstr ""
+
+#: ../lib/classes/rtTPGInit.php:77
+msgid "Search Post Grids"
+msgstr ""
+
+#: ../lib/classes/rtTPGInit.php:78
+msgid "No Post Grids found"
+msgstr ""
+
+#: ../lib/classes/rtTPGInit.php:79
+msgid "No Post Grids found in Trash"
+msgstr ""
+
+#: ../lib/classes/rtTPGInit.php:168
+msgid "Settings"
+msgstr ""
+
+#: ../lib/classes/rtTPGMeta.php:27
+msgid "Shortcode"
+msgstr ""
+
+#: ../lib/classes/rtTPGMeta.php:90
+msgid "Short Code Generator"
+msgstr ""
+
+#: ../lib/classes/rtTPGMeta.php:98
+msgid "Layout Preview"
+msgstr ""
+
+#: ../lib/classes/rtTPGMeta.php:106, ../lib/classes/rtTPGMeta.php:134, ../lib/views/settings/settings.php:7
+msgid "Documentation"
+msgstr ""
+
+#: ../lib/classes/rtTPGMeta.php:119
+msgid "Update Pro To Get More Features"
+msgstr ""
+
+#: ../lib/classes/rtTPGMeta.php:135
+msgid "Get started by spending some time with the documentation we included step by step process with screenshots with video."
+msgstr ""
+
+#: ../lib/classes/rtTPGMeta.php:144
+msgid "Get Support"
+msgstr ""
+
+#: ../lib/classes/rtTPGMeta.php:195
+msgid "Post Source"
+msgstr ""
+
+#: ../lib/classes/rtTPGMeta.php:197
+msgid "Layout Settings"
+msgstr ""
+
+#: ../lib/classes/rtTPGMeta.php:199
+msgid "Field Selection"
+msgstr ""
+
+#: ../lib/classes/rtTPGMeta.php:201
+msgid "Style"
+msgstr ""
+
+#: ../lib/classes/rtTPGOptions.php:26
+msgid "Ascending"
+msgstr ""
+
+#: ../lib/classes/rtTPGOptions.php:27
+msgid "Descending"
+msgstr ""
+
+#: ../lib/classes/rtTPGOptions.php:33
+msgid "IN — show posts which associate with one or more of selected terms"
+msgstr ""
+
+#: ../lib/classes/rtTPGOptions.php:35
+msgid "NOT IN — show posts which do not associate with any of selected terms"
+msgstr ""
+
+#: ../lib/classes/rtTPGOptions.php:37
+msgid "AND — show posts which associate with all of selected terms"
+msgstr ""
+
+#: ../lib/classes/rtTPGOptions.php:43
+msgid "AND — show posts which match all settings"
+msgstr ""
+
+#: ../lib/classes/rtTPGOptions.php:44
+msgid "OR — show posts which match one or more settings"
+msgstr ""
+
+#: ../lib/classes/rtTPGOptions.php:50, ../lib/classes/rtTPGPreview.php:656, ../lib/classes/rtTPGShortCode.php:708
+msgid "Meta value"
+msgstr ""
+
+#: ../lib/classes/rtTPGOptions.php:51
+msgid "Meta value number"
+msgstr ""
+
+#: ../lib/classes/rtTPGOptions.php:52
+msgid "Meta value datetime"
+msgstr ""
+
+#: ../lib/classes/rtTPGOptions.php:58
+msgid "ID"
+msgstr ""
+
+#: ../lib/classes/rtTPGOptions.php:59
+msgid "Title"
+msgstr ""
+
+#: ../lib/classes/rtTPGOptions.php:60
+msgid "Created date"
+msgstr ""
+
+#: ../lib/classes/rtTPGOptions.php:61
+msgid "Modified date"
+msgstr ""
+
+#: ../lib/classes/rtTPGOptions.php:62
+msgid "Menu Order"
+msgstr ""
+
+#: ../lib/classes/rtTPGOptions.php:73
+msgid "Custom CSS"
+msgstr ""
+
+#: ../lib/classes/rtTPGOptions.php:81
+msgid "Script before item load"
+msgstr ""
+
+#: ../lib/classes/rtTPGOptions.php:88
+msgid "Script After item load"
+msgstr ""
+
+#: ../lib/classes/rtTPGOptions.php:95
+msgid "After Loaded script"
+msgstr ""
+
+#: ../lib/classes/rtTPGOptions.php:111
+msgid "Load Script only ShortCode page"
+msgstr ""
+
+#: ../lib/classes/rtTPGOptions.php:112
+msgid "If you enable this, script will be loaded only ShortCode page."
+msgstr ""
+
+#: ../lib/classes/rtTPGOptions.php:118
+msgid "Enable Pre-loader"
+msgstr ""
+
+#: ../lib/classes/rtTPGOptions.php:125
+msgid "Disable Font Awesome Script"
+msgstr ""
+
+#: ../lib/classes/rtTPGOptions.php:126
+msgid "If Font Awesome 5 exist with theme, don't need to load twice."
+msgstr ""
+
+#: ../lib/classes/rtTPGOptions.php:188
+msgid "Deactivate License"
+msgstr ""
+
+#: ../lib/classes/rtTPGOptions.php:189
+msgid "Activate License"
+msgstr ""
+
+#: ../lib/classes/rtTPGOptions.php:197
+msgid "Enter your license key"
+msgstr ""
+
+#: ../lib/classes/rtTPGOptions.php:403, ../lib/classes/rtTPGOptions.php:409, ../lib/classes/rtTPGPreview.php:69, ../lib/classes/rtTPGShortCode.php:150
+msgid "Show all"
+msgstr ""
+
+#: ../lib/classes/rtTPGOptions.php:408
+msgid "Show all text"
+msgstr ""
+
+#: ../lib/classes/rtTPGOptions.php:455
+msgid "Speed"
+msgstr ""
+
+#: ../lib/classes/rtTPGOptions.php:459
+msgid "Auto play Speed in milliseconds"
+msgstr ""
+
+#: ../lib/classes/rtTPGOptions.php:462
+msgid "Autoplay timeout"
+msgstr ""
+
+#: ../lib/classes/rtTPGOptions.php:466
+msgid "Autoplay interval timeout"
+msgstr ""
+
+#: ../lib/classes/rtTPGOptions.php:470
+msgid "Image column"
+msgstr ""
+
+#: ../lib/classes/rtTPGOptions.php:479
+msgid "Desktop"
+msgstr ""
+
+#: ../lib/classes/rtTPGOptions.php:488
+msgid "Tab"
+msgstr ""
+
+#: ../lib/classes/rtTPGOptions.php:497
+msgid "Mobile"
+msgstr ""
+
+#: ../lib/classes/rtTPGOptions.php:566
+msgid "Image Type"
+msgstr ""
+
+#: ../lib/classes/rtTPGOptions.php:574
+msgid "Title limit"
+msgstr ""
+
+#: ../lib/classes/rtTPGOptions.php:575
+msgid "Title limit only integer number is allowed, Leave it blank for full title."
+msgstr ""
+
+#: ../lib/classes/rtTPGOptions.php:579
+msgid "Title limit type"
+msgstr ""
+
+#: ../lib/classes/rtTPGOptions.php:586
+msgid "Excerpt limit"
+msgstr ""
+
+#: ../lib/classes/rtTPGOptions.php:587
+msgid "Excerpt limit only integer number is allowed, Leave it blank for full excerpt."
+msgstr ""
+
+#: ../lib/classes/rtTPGOptions.php:591
+msgid "Excerpt Type"
+msgstr ""
+
+#: ../lib/classes/rtTPGOptions.php:607
+msgid "Title tag"
+msgstr ""
+
+#: ../lib/classes/rtTPGOptions.php:807
+msgid "Read more button border radius"
+msgstr ""
+
+#: ../lib/classes/rtTPGOptions.php:808
+msgid "Leave it blank for default"
+msgstr ""
+
+#: ../lib/classes/rtTPGOptions.php:813
+msgid "Read more button alignment"
+msgstr ""
+
+#: ../lib/classes/rtTPGOptions.php:816
+msgid "Left"
+msgstr ""
+
+#: ../lib/classes/rtTPGOptions.php:817
+msgid "Right"
+msgstr ""
+
+#: ../lib/classes/rtTPGOptions.php:818
+msgid "Center"
+msgstr ""
+
+#: ../lib/classes/rtTPGOptions.php:823
+msgid "Title Position (Above or Below image)"
+msgstr ""
+
+#: ../lib/classes/rtTPGOptions.php:828
+msgid "Above image"
+msgstr ""
+
+#: ../lib/classes/rtTPGOptions.php:829
+msgid "Below image"
+msgstr ""
+
+#: ../lib/classes/rtTPGOptions.php:831
+msgid "<span style='color:red'>Only Layout 1, Layout 12, Layout 14, Isotope1, Isotope8, Isotope10, Carousel Layout 1, Carousel Layout 8, Carousel Layout 10</span>"
+msgstr ""
+
+#: ../lib/classes/rtTPGOptions.php:914
+msgid "Character"
+msgstr ""
+
+#: ../lib/classes/rtTPGOptions.php:915
+msgid "Word"
+msgstr ""
+
+#: ../lib/classes/rtTPGOptions.php:918
+msgid "Full Content"
+msgstr ""
+
+#: ../lib/classes/rtTPGOptions.php:937
+msgid "Taxonomy filter"
+msgstr ""
+
+#: ../lib/classes/rtTPGOptions.php:938
+msgid "Author filter"
+msgstr ""
+
+#: ../lib/classes/rtTPGOptions.php:939
+msgid "Order - Sort retrieved posts by parameter"
+msgstr ""
+
+#: ../lib/classes/rtTPGOptions.php:940
+msgid "Sort Order - Designates the ascending or descending order of the \"orderby\" parameter"
+msgstr ""
+
+#: ../lib/classes/rtTPGOptions.php:941
+msgid "Search filter"
+msgstr ""
+
+#: ../lib/classes/rtTPGOptions.php:961
+msgid "Layout 1"
+msgstr ""
+
+#: ../lib/classes/rtTPGOptions.php:962
+msgid "Layout 2"
+msgstr ""
+
+#: ../lib/classes/rtTPGOptions.php:963
+msgid "Layout 3"
+msgstr ""
+
+#: ../lib/classes/rtTPGOptions.php:964
+msgid "Isotope Layout"
+msgstr ""
+
+#: ../lib/classes/rtTPGOptions.php:1089
+msgid "Get Pro Version"
+msgstr ""
+
+#: ../lib/classes/rtTPGPreview.php:67, ../lib/classes/rtTPGShortCode.php:148
+msgid "Read More"
+msgstr ""
+
+#: ../lib/classes/rtTPGPreview.php:420, ../lib/classes/rtTPGShortCode.php:475
+msgid "All"
+msgstr ""
+
+#: ../lib/classes/rtTPGPreview.php:654, ../lib/classes/rtTPGPreview.php:661, ../lib/classes/rtTPGShortCode.php:706, ../lib/classes/rtTPGShortCode.php:713
+msgid "Sort By None"
+msgstr ""
+
+#: ../lib/classes/rtTPGPreview.php:679, ../lib/classes/rtTPGShortCode.php:731
+msgid "Search..."
+msgstr ""
+
+#: ../lib/classes/rtTPGPreview.php:687, ../lib/classes/rtTPGShortCode.php:739
+msgid "Loading ..."
+msgstr ""
+
+#: ../lib/classes/rtTPGPreview.php:868, ../lib/classes/rtTPGShortCode.php:911
+msgid "No post found"
+msgstr ""
+
+#: ../lib/classes/rtTPGPreview.php:771, ../lib/classes/rtTPGShortCode.php:820
+msgid "Search"
+msgstr ""
+
+#: ../lib/classes/rtTPGPreview.php:902, ../lib/classes/rtTPGPreview.php:897, ../lib/classes/rtTPGShortCode.php:937
+msgid "Load More"
+msgstr ""
+
+#: ../lib/classes/rtTPGShortCode.php:975
+msgid "No shortCode found"
+msgstr ""
+
+#: ../lib/classes/rtTPGShortCode.php:995
+msgid "This is a restricted content, you need to logged in to view this content."
+msgstr ""
+
+#: ../lib/classes/rtTPGShortCode.php:989
+msgid "You are not permitted to view this content."
+msgstr ""
+
+#: ../lib/models/rtTPGField.php:82
+msgid "Premium Option"
+msgstr ""
+
+#: ../lib/models/rtTPGField.php:369
+msgid "Start"
+msgstr ""
+
+#: ../lib/models/rtTPGField.php:378
+msgid "End"
+msgstr ""
+
+#: ../lib/vendor/RtElementorWidget.php:35
+msgid "Post Grid"
+msgstr ""
+
+#: ../lib/widgets/RT_TPGWidget.php:13
+msgid "Display the post grid."
+msgstr ""
+
+#: ../lib/widgets/RT_TPGWidget.php:45
+msgid "Title:"
+msgstr ""
+
+#: ../lib/widgets/RT_TPGWidget.php:51
+msgid "Select post grid"
+msgstr ""
+
+#: ../lib/views/settings/post-source.php:140
+msgid "If \"Meta value\", \"Meta value Number\" or \"Meta value datetime\" is chosen then meta key is required."
+msgstr ""
+
+#: ../lib/views/settings/settings.php:3
+msgid "The Post Grid Settings"
+msgstr ""
+
+#: ../lib/views/settings/settings.php:4
+msgid "General settings"
+msgstr ""
+
+#: ../lib/views/settings/settings.php:25
+msgid "PopUp field selection"
+msgstr ""
+
+#: ../lib/views/settings/settings.php:27
+msgid "Social Share"
+msgstr ""
+
+#: ../lib/views/settings/settings.php:29
+msgid "Custom Script"
+msgstr ""
+
+#: ../lib/views/settings/settings.php:31
+msgid "Other Settings"
+msgstr ""
