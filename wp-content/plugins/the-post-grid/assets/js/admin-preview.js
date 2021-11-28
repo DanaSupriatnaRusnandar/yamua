@@ -2,11 +2,11 @@
     'use strict';
 
     $(window).resize(function () {
-        tgpHeightResize();
+        //tgpHeightResize();
         overlayIconResizeTpg();
     });
     $(window).load(function () {
-        tgpHeightResize();
+        //tgpHeightResize();
         overlayIconResizeTpg();
     });
     $("#tpg-preview-container").on('click', 'a.tpg-zoom', function (e) {
@@ -172,7 +172,7 @@
                 isIsotop = $(".rt-tpg-isotope", container),
                 IsoButton = $(".rt-tpg-isotope-buttons", container),
                 IsoDropdownFilter = $("select.isotope-dropdown-filter", container),
-                isCarousel = $('.rt-carousel-holder', container),
+                isCarousel = $('.rt-swiper-holder', container),
                 placeholder_loading = function () {
                     if (loader.find('.rt-loading-overlay').length == 0) {
                         loader.addClass('tpg-pre-loader');
@@ -464,37 +464,64 @@
 
                 if (isCarousel.length) {
                     isCarousel.imagesLoaded(function () {
-                        var item = parseInt(isCarousel.data('item'), 10),
-                            dItem = parseInt(container.attr('data-desktop-col'), 10),
-                            tItem = parseInt(container.attr('data-tab-col'), 10),
-                            mItem = parseInt(container.attr('data-tab-col'), 10),
-                            options = isCarousel.data('rtowl-options');
-                        isCarousel.owlCarousel({
-                            nav: options.nav,
-                            dots: options.dots,
-                            autoplay: options.autoPlay,
-                            autoplayHoverPause: options.stopOnHover,
-                            loop: options.loop,
-                            autoHeight: options.autoHeight,
-                            lazyLoad: options.lazyLoad,
-                            rtl: options.rtl,
-                            navText: ["<i class=\'fa fa-chevron-left\'></i>", "<i class=\'fa fa-chevron-right\'></i>"],
-                            responsiveClass: true,
-                            autoplayTimeout: options.autoPlayTimeOut,
-                            smartSpeed: options.speed,
-                            responsive: {
-                                0: {
-                                    items: mItem ? mItem : 1
-                                },
-                                767: {
-                                    items: tItem ? tItem : 2
-                                },
-                                991: {
-                                    items: dItem ? dItem : 3
-                                }
+                        $(".rt-swiper-holder").each(function() {
+
+                            var rtSwiperSlider = $(this).get(0),
+                                prevButton = $(this).parent().children().find(".swiper-button-prev").get(0),
+                                nextButton = $(this).parent().children().find(".swiper-button-next").get(0),
+                                dotPagination = $(this).parent().children().find(".swiper-pagination").get(0),
+                                dItem = parseInt(container.attr('data-desktop-col'), 10),
+                                tItem = parseInt(container.attr('data-tab-col'), 10),
+                                mItem = parseInt(container.attr('data-mobile-col'), 10),
+                                options = isCarousel.data('rtowl-options'),
+                                rtSwiperData = {
+                                    slidesPerView: mItem ? mItem : 1,
+                                    spaceBetween: 24,
+                                    loop: options.loop,
+                                    slideToClickedSlide: true,
+                                    speed: options.speed,
+                                    autoHeight: options.autoHeight,
+                                    breakpoints: {
+                                        0: {
+                                            slidesPerView: mItem ? mItem : 1,
+                                        },
+                                        768: {
+                                            slidesPerView: tItem ? tItem : 2,
+                                        },
+                                        992: {
+                                            slidesPerView: dItem ? dItem : 3,
+                                        },
+                                    }
+                                };
+
+                            if (options.autoPlay) {
+                                Object.assign(rtSwiperData, {
+                                    autoplay: {
+                                        delay: options.autoPlayTimeOut,
+                                    }
+                                });
                             }
+                            if (options.nav) {
+                                Object.assign(rtSwiperData, {
+                                    navigation: {
+                                        nextEl: nextButton,
+                                        prevEl: prevButton,
+                                    }
+                                });
+                            }
+                            if (options.dots) {
+                                Object.assign(rtSwiperData, {
+                                    pagination: {
+                                        el: dotPagination,
+                                        clickable: true,
+                                        dynamicBullets: true,
+                                    }
+                                });
+                            }
+
+                            new Swiper(rtSwiperSlider, rtSwiperData);
+                            remove_placeholder_loading();
                         });
-                        remove_placeholder_loading();
                     });
                 } else if (isIsotop.length) {
                     var IsoURL = IsoButton.attr('data-url'),
@@ -658,7 +685,7 @@
     }
 
     function preFunction() {
-        tgpHeightResize();
+        //tgpHeightResize();
         overlayIconResizeTpg();
     }
 

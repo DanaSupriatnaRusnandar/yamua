@@ -42,7 +42,15 @@ if ( ! class_exists( 'rtTPGField' ) ):
 					if ( $this->multiple ) {
 						$this->value = get_post_meta( $post_id, $this->name );
 					} else {
-						$this->value = get_post_meta( $post_id, $this->name, true );
+						if ( 'switch' != $this->type ) {
+							$this->value = get_post_meta( $post_id, $this->name, true );
+						} else {
+							if (metadata_exists('post', $post_id, $this->name)) {
+								$this->value = get_post_meta( $post_id, $this->name, true );
+							} else {
+								$this->value = $this->default;
+							}
+						}
 					}
 				}
 			}
@@ -113,9 +121,17 @@ if ( ! class_exists( 'rtTPGField' ) ):
                     $html .= $this->switchField();
                     break;
 
+                case 'checkboxFilter':
+                    $html .= $this->checkboxFilter();
+                    break;
+
 				case 'radio':
 					$html .= $this->radioField();
 					break;
+
+                case 'radio-image':
+                    $html .= $this->radioImage();
+                    break;
 
 				case 'date_range':
 					$html .= $this->dateRange();
@@ -319,6 +335,7 @@ if ( ! class_exists( 'rtTPGField' ) ):
 				if ( is_array( $this->options ) && ! empty( $this->options ) ) {
 					foreach ( $this->options as $key => $value ) {
 						$checked = ( in_array( $key, $this->value ) ? "checked" : null );
+
 						$h       .= "<label for='{$this->id}-{$key}'>
                                 <input {$atts} type='checkbox' id='{$this->id}-{$key}' {$checked} name='{$this->name}' value='{$key}'>{$value}
                                 </label>";
@@ -335,8 +352,271 @@ if ( ! class_exists( 'rtTPGField' ) ):
 
         private function switchField() {
             $h = null;
-            $checked = ( $this->value ? "checked" : null );
+	        $checked = $this->value ? "checked" : null;
             $h .= "<label class='rttm-switch'><input type='checkbox' {$checked} id='{$this->id}' name='{$this->name}' value='1' /><span class='rttm-switch-slider round'></span></label>";
+
+            return $h;
+        }
+
+        private function checkboxFilter() {
+
+		    global $post;
+
+            $pt = get_post_meta($post->ID, 'tpg_post_type', true);
+            $advFilters = rtTPG()->rtTPAdvanceFilters();
+
+            $holderClass = explode(' ', $this->holderClass);
+            $atts = (in_array('pro-field', $holderClass)) && !rtTPG()->hasPro() ? 'disabled="true"' : '';
+            $h = null;
+            if ( $this->multiple ) {
+                $this->name  = $this->name . "[]";
+                $this->value = ( is_array( $this->value ) && ! empty( $this->value ) ? $this->value : array() );
+            }
+            if ( $this->multiple ) {
+                $h .= "<div class='checkbox-group {$this->alignment}' id='{$this->id}'>";
+                if ( is_array( $this->options ) && ! empty( $this->options ) ) {
+                    foreach ( $this->options as $key => $value ) {
+                        $checked = ( in_array( $key, $this->value ) ? "checked" : null );
+
+                        $h .= '<div class="checkbox-filter-field">';
+
+                        $h       .= "<label for='{$this->id}-{$key}'>
+                                <input {$atts} type='checkbox' id='{$this->id}-{$key}' {$checked} name='{$this->name}' value='{$key}'>{$value}
+                                </label>";
+
+                        //foreach($advFilters['post_filter']['options'] as $key => $filter){
+
+                            if($key == 'tpg_taxonomy'){
+                                $h .= "<div class='rt-tpg-filter taxonomy tpg_taxonomy tpg-hidden'>";
+
+                                if(isset($pt) && $pt){
+                                    $taxonomies = rtTPG()->rt_get_all_taxonomy_by_post_type($pt);
+                                    $taxA = get_post_meta($post->ID, 'tpg_taxonomy');
+                                    $post_filter = get_post_meta($post->ID, 'post_filter');
+
+                                    $h .= "<div class='taxonomy-field'>";
+                                    if(is_array($post_filter) && !empty($post_filter) && in_array('tpg_taxonomy', $post_filter) && !empty($taxonomies)) {
+                                        $h .= rtTPG()->rtFieldGenerator(
+                                            array(
+                                                'tpg_taxonomy' => array(
+                                                    'type' => 'checkbox',
+                                                    'label' => '',
+                                                    'id' => 'post-taxonomy',
+                                                    "multiple" => true,
+                                                    'options' => $taxonomies
+                                                )
+                                            )
+                                        );
+                                    }else{
+                                        $h .= '<div class="field-holder">No Taxonomy found</div>';
+                                    }
+                                    $h .= "</div>";
+                                    $h .= "<div class='rt-tpg-filter-item term-filter-item tpg-hidden'>";
+                                    $h .= '<div class="field-holder">';
+                                    $h .= '<div class="field-label">Terms</div>';
+                                    $h .= '<div class="field term-filter-holder">';
+                                    if(is_array($taxA) && !empty($taxA)){
+                                        foreach($taxA as $tax){
+
+                                            $h .="<div class='term-filter-item-container {$tax}'>";
+                                            $h .= rtTPG()->rtFieldGenerator(
+                                                array(
+                                                    'term_'.$tax => array(
+                                                        'type' => 'select',
+                                                        'label' => ucfirst(str_replace('_', ' ', $tax)),
+                                                        'class' => 'rt-select2 full',
+                                                        'holderClass' => "term-filter-item {$tax}",
+                                                        'value' => get_post_meta($post->ID, 'term_'.$tax),
+                                                        "multiple" => true,
+                                                        'options' => rtTPG()->rt_get_all_term_by_taxonomy($tax)
+                                                    )
+                                                )
+                                            );
+                                            $h .= rtTPG()->rtFieldGenerator(
+                                                array(
+                                                    'term_operator_'.$tax => array(
+                                                        'type' => 'select',
+                                                        'label' => 'Operator',
+                                                        'class' => 'rt-select2 full',
+                                                        'holderClass' => "term-filter-item-operator {$tax}",
+                                                        'value' => get_post_meta($post->ID, 'term_operator_'.$tax, true),
+                                                        'options' => rtTPG()->rtTermOperators()
+                                                    )
+                                                )
+                                            );
+                                            $h .= "</div>";
+                                        }
+                                    }
+                                    $h .= "</div>";
+                                    $h .= "</div>";
+
+                                    $h .= rtTPG()->rtFieldGenerator(
+                                        array(
+                                            'taxonomy_relation' => array(
+                                                'type' => 'select',
+                                                'label' => 'Relation',
+                                                'class' => 'rt-select2',
+                                                'holderClass' => "term-filter-item-relation ". (count($taxA) > 1 ? null : "hidden"),
+                                                'value' => get_post_meta($post->ID, 'taxonomy_relation', true),
+                                                'options' => rtTPG()->rtTermRelations()
+                                            )
+                                        )
+                                    );
+
+                                    $h .= "</div>";
+                                }else{
+
+                                    $h .= "<div class='taxonomy-field'>";
+                                    $h .= "</div>";
+                                    $h .= "<div class='rt-tpg-filter-item'>";
+                                    $h .= '<div class="field-holder">';
+                                    $h .= '<div class="field-label">Terms</div>';
+                                    $h .= '<div class="field term-filter-holder">';
+                                    $h .= "</div>";
+                                    $h .= "</div>";
+                                    $h .= "</div>";
+                                    $h .= rtTPG()->rtFieldGenerator(
+                                        array(
+                                            'taxonomy_relation' => array(
+                                                'type' => 'select',
+                                                'label' => 'Relation',
+                                                'class' => 'rt-select2',
+                                                'holderClass' => "term-filter-item-relation tpg-hidden",
+                                                'default'   => 'OR',
+                                                'options' => rtTPG()->rtTermRelations()
+                                            )
+                                        )
+                                    );
+                                }
+                                $h .= "</div>";
+                            } else if($key == 'order') {
+                                $h .= "<div class='rt-tpg-filter {$key} tpg-hidden'>";
+                                $h .= "<div class='rt-tpg-filter-item'>";
+                                $h .="<div class='field-holder'>";
+                                $h .="<div class='field'>";
+                                $h .= rtTPG()->rtFieldGenerator(
+                                    array(
+                                        'order_by' => array(
+                                            'type' => 'select',
+                                            'label' => 'Order by',
+                                            'class' => 'rt-select2 filter-item',
+                                            'value' => get_post_meta($post->ID, 'order_by', true),
+                                            'options' => rtTPG()->rtPostOrderBy(false, true),
+                                            'description' => __('If "Meta value", "Meta value Number" or "Meta value datetime" is chosen then meta key is required.', 'the-post-grid')
+                                        )
+                                    )
+                                );
+                                $h .= rtTPG()->rtFieldGenerator(
+                                    array(
+                                        'tpg_meta_key' => array(
+                                            'type' => 'text',
+                                            'label' => 'Meta key',
+                                            'class' => 'rt-select2 filter-item',
+                                            'holderClass' => 'tpg-hidden',
+                                            'value' => get_post_meta($post->ID, 'tpg_meta_key', true)
+                                        )
+                                    )
+                                );
+                                $h .= rtTPG()->rtFieldGenerator(
+                                    array(
+                                        'order' => array(
+                                            'type' => 'radio',
+                                            'label' => 'Order',
+                                            'class' => 'rt-select2 filter-item',
+                                            'alignment' => 'vertical',
+                                            'default' => 'DESC',
+                                            'value' => get_post_meta($post->ID, 'order', true),
+                                            'options' => rtTPG()->rtPostOrders()
+                                        )
+                                    )
+                                );
+                                $h .="</div>";
+                                $h .="</div>";
+                                $h .= "</div>";
+                                $h .= "</div>";
+                            } else if($key == 'author') {
+                                $h .= "<div class='rt-tpg-filter {$key} tpg-hidden'>";
+                                $h .= "<div class='rt-tpg-filter-item'>";
+                                $h .= rtTPG()->rtFieldGenerator(
+                                    array(
+                                        $key => array(
+                                            'type' => 'select',
+                                            'label' => '',
+                                            'class' => 'rt-select2 filter-item full',
+                                            'value' => get_post_meta($post->ID, $key),
+                                            "multiple" => true,
+                                            'options' => rtTPG()->rt_get_users()
+                                        )
+                                    )
+                                );
+                                $h .= "</div>";
+                                $h .= "</div>";
+                            } else if($key == 'tpg_post_status'){
+                                $h .= "<div class='rt-tpg-filter {$key} tpg-hidden'>";
+                                $h .= "<div class='rt-tpg-filter-item'>";
+                                $h .= rtTPG()->rtFieldGenerator(
+                                    array(
+                                        $key => array(
+                                            'type' => 'select',
+                                            'label' => '',
+                                            'class' => 'rt-select2 filter-item full',
+                                            'default' => array('publish'),
+                                            'value' => get_post_meta($post->ID, $key),
+                                            "multiple" => true,
+                                            'options' => rtTPG()->rtTPGPostStatus()
+                                        )
+                                    )
+                                );
+                                $h .= "</div>";
+                                $h .= "</div>";
+                            } else if($key == 's'){
+                                $h .= "<div class='rt-tpg-filter {$key} tpg-hidden'>";
+                                $h .= "<div class='rt-tpg-filter-item'>";
+                                $h .= rtTPG()->rtFieldGenerator(
+                                    array(
+                                        $key => array(
+                                            'type' => 'text',
+                                            'label' => 'Keyword',
+                                            'class' => 'filter-item full',
+                                            'value' => get_post_meta($post->ID, $key, true)
+                                        )
+                                    )
+                                );
+                                $h .= "</div>";
+                                $h .= "</div>";
+                            } else if($key == 'date_range'){
+                                $range_start = get_post_meta($post->ID, 'date_range_start', true);
+                                $range_end = get_post_meta($post->ID, 'date_range_end', true);
+                                $range_value = [
+                                    'start' => $range_start,
+                                    'end' => $range_end
+                                ];
+                                $h .= "<div class='rt-tpg-filter {$key} tpg-hidden'>";
+                                $h .= "<div class='rt-tpg-filter-item'>";
+                                $h .= rtTPG()->rtFieldGenerator(
+                                    array(
+                                        $key=> array(
+                                            'type' => 'date_range',
+                                            'label' => '',
+                                            'class' => 'filter-item full rt-date-range',
+                                            'value' => $range_value,
+                                            'description' => "Date format should be 'yyyy-mm-dd'",
+                                        )
+                                    )
+                                );
+                                $h .= "</div>";
+                                $h .= "</div>";
+                            }
+                        //}
+
+                        $h .= '</div>';
+                    }
+                }
+                $h .= "</div>";
+            } else {
+                $checked = ( $this->value ? "checked" : null );
+                $h       .= "<label><input type='checkbox' {$checked} id='{$this->id}' name='{$this->name}' value='1' />{$this->option}</label>";
+            }
 
             return $h;
         }
@@ -361,6 +641,52 @@ if ( ! class_exists( 'rtTPGField' ) ):
 
 			return $h;
 		}
+
+        /**
+         * Radio Image
+         *
+         * @return String
+         */
+        private function radioImage() {
+            $h = null;
+            $id = 'rttpg-' . $this->name;
+
+            $h .= sprintf("<div class='rttpg-radio-image %s' id='%s'>", esc_attr($this->alignment), esc_attr($id));
+            $selected_value = $this->value;
+
+            if ( is_array($this->options) && !empty($this->options) ) {
+                foreach ($this->options as $key => $value) {
+                    $checked = ( $key == $selected_value ? "checked" : null);
+                    $title = isset( $value['title'] ) && $value['title'] ? esc_html( $value['title'] ) : '';
+                    $link = isset( $value['layout_link'] ) && $value['layout_link'] ? $value['layout_link'] : '';
+                    $linkHtml = empty($link) ? esc_html($title) : '<a href="'.esc_url($link).'" target="_blank">'.esc_html($title).'</a>';
+                    $layout = isset( $value['layout'] ) ?  $value['layout'] : '';
+                    $taghtml = isset($value['tag']) ? '<div class="rt-tpg-layout-tag"><span>'.$value['tag'].'</span></div>' : '';
+                    $h .= sprintf('<div class="rt-tpg-radio-layout %7$s"><label data-type="%7$s" class="radio-image %7$s"  for="%2$s">
+                            <input type="radio" id="%2$s" %3$s name="%4$s" value="%2$s">
+                            <div class="rttpg-radio-image-wrap">
+                                <img src="%5$s" title="%6$s" alt="%2$s">
+                                <div class="rttpg-checked"><span class="dashicons dashicons-yes"></span></div>
+                                %9$s
+                            </div>
+                        </label>
+                        <div class="rttpg-demo-name">%8$s</div>
+                        </div>',
+                        '',
+                        esc_attr( $key ),
+                        esc_attr($checked),
+                        esc_attr($this->name),
+                        esc_url($value['img']),
+                        esc_attr($title),
+                        esc_attr($layout),
+                        $linkHtml,
+                        $taghtml
+                    );
+                }
+            }
+            $h .= "</div>";
+            return $h;
+        }
 
 		private function dateRange() {
 			$h          = null;

@@ -4,7 +4,7 @@ Tested up to: 5.8
 Contributors: WPBrigade, hiddenpearls, AbdulWahab610
 Author URI: https://wpbrigade.com/?utm_source=loginpress-lite&utm_medium=author-url-link
 Tags: wp-login, login, login customizer, custom login, wordpress login,
-Stable tag: 1.5.8
+Stable tag: 1.5.9
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -33,7 +33,7 @@ LoginPress plugin is built using The Customizer API which is getting popular for
 
 ** LoginPress Addons **
 
-We have a collection of great Free and Pro addons that makes LoginPress more powerfull. Upgrade to Pro package and enjoy the show.
+We have a collection of great Free and Pro addons that makes LoginPress more powerful. Upgrade to Pro package and enjoy the show.
 
 * [Login Logout Menu (FREE)](https://wordpress.org/plugins/login-logout-menu/)
 * Social Login
@@ -151,7 +151,7 @@ In your WordPress Dashboard, navigate to LoginPress > Settings to get started.
 
 = Who should use LoginPress? =
 
-Every WordPress user should use LoginPress. It is easy to use and can tranform your boring wp-login.php login page into a beautiful customized login form page.
+Every WordPress user should use LoginPress. It is easy to use and can transform your boring wp-login.php login page into a beautiful customized login form page.
 
 = Do I need to have coding skills to use LoginPress? =
 
@@ -219,6 +219,9 @@ Please visit <a target="_blank" rel="friend" href="https://loginpress.pro?utm_so
 23. Custom Login page (Company theme) Example #23 with Captcha [Pro feature](https://loginpress.pro?utm_source=loginpress-lite&utm_medium=screenshots&utm_campaign=pro-upgrade)
 
 == Changelog ==
+
+= 1.5.9 – 2021-11-26 =
+* BugFix: Only administrator can view the review banner now.
 
 = 1.5.8 – 2021-11-01 =
 * BugFix: Footer div spacing issue.
@@ -341,7 +344,7 @@ Please visit <a target="_blank" rel="friend" href="https://loginpress.pro?utm_so
 * New Feature: One click Install / Activate / Deactivate Add-Ons on addons page.
 * Bugfix: Enable / Disable "Back To" link issue in customizer.
 * Bugfix: "remember me" color issue in customizer.
-* Bugfix: Login form transparacny issue in customizer.
+* Bugfix: Login form transparency issue in customizer.
 * Bugfix: Optimized plugin speed and code improvement.
 * Enhancement: Allow SVG file type if SVG mime enable in WordPress.
 
@@ -625,5 +628,5 @@ Please visit <a target="_blank" rel="friend" href="https://loginpress.pro?utm_so
 
 == Upgrade Notice ==
 
-= 1.5.8 =
+= 1.5.9 =
 * Important Release, upgrade immediately. Compatible with 5.8

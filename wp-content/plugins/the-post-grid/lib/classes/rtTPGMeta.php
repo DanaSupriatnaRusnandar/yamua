@@ -60,7 +60,6 @@ if ( ! class_exists( 'rtTPGMeta' ) ):
 				$select2Id,
 				'rt-image-load-js',
 				'rt-isotope-js',
-				'rt-actual-height-js',
 				'rt-tpg-admin',
 				'rt-tpg-admin-preview',
 			) );
@@ -128,7 +127,7 @@ if ( ! class_exists( 'rtTPGMeta' ) ):
 							<div class="rt-box-content">
                     			<h3 class="rt-box-title">%1$s</h3>
                     				<p>%2$s</p>
-                        			<a href="https://radiustheme.com/how-to-setup-configure-the-post-grid-free-version-for-wordpress/" target="_blank" class="rt-admin-btn">%1$s</a>
+                        			<a href="https://www.radiustheme.com/docs/the-post-grid/" target="_blank" class="rt-admin-btn">%1$s</a>
                 			</div>
 						</div>',
                 __("Documentation", 'the-post-grid'),
@@ -188,13 +187,16 @@ if ( ! class_exists( 'rtTPGMeta' ) ):
 			$html .= sprintf( '<ul class="rt-tab-nav">
                                 <li%s><a href="#sc-post-post-source">%s</a></li>
                                 <li%s><a href="#sc-post-layout-settings">%s</a></li>
+                                <li%s><a href="#sc-settings">%s</a></li>
                                 <li%s><a href="#sc-field-selection">%s</a></li>
                                 <li%s><a href="#sc-style">%s</a></li>
                               </ul>',
 				$last_tab == "sc-post-post-source" ? ' class="active"' : '',
-				__( 'Post Source', 'the-post-grid' ),
+				__( 'Query Build', 'the-post-grid' ),
 				$last_tab == "sc-post-layout-settings" ? ' class="active"' : '',
 				__( 'Layout Settings', 'the-post-grid' ),
+                $last_tab == "sc-settings" ? ' class="active"' : '',
+                __( 'Settings', 'the-post-grid' ),
 				$last_tab == "sc-field-selection" ? ' class="active"' : '',
 				__( 'Field Selection', 'the-post-grid' ),
 				$last_tab == "sc-style" ? ' class="active"' : '',
@@ -208,6 +210,10 @@ if ( ! class_exists( 'rtTPGMeta' ) ):
 			$html .= sprintf( '<div id="sc-post-layout-settings" class="rt-tab-content"%s>', $last_tab == "sc-post-layout-settings" ? ' style="display:block"' : '' );
 			$html .= rtTPG()->render_view( 'settings.layout-settings', $post, true );
 			$html .= '</div>';
+
+            $html .= sprintf( '<div id="sc-settings" class="rt-tab-content"%s>', $last_tab == "sc-settings" ? ' style="display:block"' : '' );
+            $html .= rtTPG()->render_view( 'settings.sc-settings', $post, true );
+            $html .= '</div>';
 
 			$html .= sprintf( '<div id="sc-field-selection" class="rt-tab-content"%s>', $last_tab == "sc-field-selection" ? ' style="display:block"' : '' );
 			$html .= rtTPG()->render_view( 'settings.item-fields', $post, true );
